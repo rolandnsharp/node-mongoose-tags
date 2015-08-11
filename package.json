@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "keywords": [
+    "tags",
+    "mongoose",
+    "plugin"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/mocha/bin/mocha test test/*-test.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/rolandnsharp/node-mongoose-tags/issues"
   },
-  "homepage": "https://github.com/rolandnsharp/node-mongoose-tags"
+  "homepage": "https://github.com/rolandnsharp/node-mongoose-tags",
+  "devDependencies": {
+    "mongoose": "^4.1.2",
+    "mongoose-fixtures": "0.0.1",
+    "should": "^7.0.3"
+  }
 }
