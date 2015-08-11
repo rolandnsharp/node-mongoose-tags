@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/rolandnsharp/node-mongoose-tags",
   "devDependencies": {
+    "mocha": "^2.2.5",
     "mongoose": "^4.1.2",
     "mongoose-fixtures": "0.0.1",
     "should": "^7.0.3"
