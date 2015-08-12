@@ -9,7 +9,7 @@
     "plugin"
   ],
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha test test/*-test.js"
+    "test": "node node_modules/mocha/bin/mocha test test"
   },
   "repository": {
     "type": "git",
