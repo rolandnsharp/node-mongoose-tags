@@ -3,26 +3,32 @@ var should = require('should');
 
 describe("AddTags Static: ", function() {
 
-  before(function(done) {
+  var doc1;
+  var doc2;
 
+  before(function(done) {
     Test.create([{
       name: 'test1'
     }, {
       name: 'test2'
-    }], function(err) {
+    }], function(err, docs) {
+      doc1 = docs[0]._id;
+      doc2 = docs[1]._id;
+
       done();
     });
   });
 
   it("should add multiple tags", function(done) {
 
-    var conditions = {};
-    var tags = ['tag1', 'tag2', 'tag3'];
 
-    Test.addTags(conditions, tags, function(err, response) {
+    var tags = ['tag1', 'tag2', 'tag3'];
+    var documents = [doc1, doc2];
+
+    Test.addTags(documents, tags, function(err, response) {
       should.not.exist(err);
 
-      Test.find(conditions, function(err, docs) {
+      Test.find(documents, function(err, docs) {
         should.not.exist(err);
 
         docs.should.be.an.Array;
@@ -43,13 +49,13 @@ describe("AddTags Static: ", function() {
 
   it("should remove multiple tags", function(done) {
 
-    var conditions = {};
+    var documents = [doc1, doc2];
     var tags = ['tag1', 'tag2'];
 
-    Test.removeTags(conditions, tags, function(err, response) {
+    Test.removeTags(documents, tags, function(err, response) {
       should.not.exist(err);
 
-      Test.find(conditions, function(err, docs) {
+      Test.find(documents, function(err, docs) {
         should.not.exist(err);
 
         docs.should.be.an.Array;
@@ -65,7 +71,6 @@ describe("AddTags Static: ", function() {
       });
     });
   });
-
 
   after(function(done) {
     Test.remove({}, done);
