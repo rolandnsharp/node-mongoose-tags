@@ -9,43 +9,37 @@ module.exports = function(schema, options) {
 
   schema.statics.addTags = function(documents, tags, callback) {
 
-    if (!_isArray(documents)) {
-      try {
-        var array = [];
-        var documents = array.push(documents.toString());
-      }
-    }
+		if (!_.isArray(documents)) {
+			documents = [documents];
+		}
 
-    if (!_isArray(tags)) {
-      try {
-        var array = [];
-        var documents = array.push(tags.toString());
-      }
-    }
+		if (!_.isArray(tags)) {
+			tags = [tags];
+		}
 
-    var conditions = {
-      _id: {
-        '$in': documents
-      }
-    };
+		var conditions = {
+			_id: {
+				'$in': documents
+			}
+		};
 
-    var update = {
-      $pushAll: {
-        tags: tags
-      }
-    };
+		var update = {
+			$pushAll: {
+				tags: tags
+			}
+		};
 
-    var options = {
-      multi: true
-    };
+		var options = {
+			multi: true
+		};
 
-    this.update(conditions, update, options, function(err, numAffected) {
-      if (err) {
-        return callback(err);
-      }
-      callback(null, numAffected);
-    });
-  };
+		this.update(conditions, update, options, function(err, numAffected) {
+			if (err) {
+				return callback(err);
+			}
+			callback(null, numAffected);
+		});
+	};
 
   schema.statics.removeTags = function(conditions, tags, callback) {
 
