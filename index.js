@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function(schema, options) {
 
   // add fields to mongoose schema
@@ -5,7 +7,27 @@ module.exports = function(schema, options) {
     tags: [String]
   });
 
-  schema.statics.addTags = function(conditions, tags, callback) {
+  schema.statics.addTags = function(documents, tags, callback) {
+
+    if (!_isArray(documents)) {
+      try {
+        var array = [];
+        var documents = array.push(documents.toString());
+      }
+    }
+
+    if (!_isArray(tags)) {
+      try {
+        var array = [];
+        var documents = array.push(tags.toString());
+      }
+    }
+
+    var conditions = {
+      _id: {
+        '$in': documents
+      }
+    };
 
     var update = {
       $pushAll: {
