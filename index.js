@@ -24,8 +24,8 @@ module.exports = function(schema, options) {
     };
 
     var update = {
-      $pushAll: {
-        tags: tags
+      '$addToSet': {
+        tags: { "$each": tags }
       }
     };
 
