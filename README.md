@@ -7,7 +7,7 @@ A tagging plugin for Mongoosejs.
 
 This is a basic plugin which adds a `tags` field to a collection schema, and provides statics methods and instance methods for adding and removing these tags.
 
-Tags are only an array document identifiers which reference your tags collection.
+Tags are simply an array of document identifiers which reference your tags collection.
 
 ### Install
 
@@ -28,15 +28,19 @@ var mongoose = require('mongoose');
 schema = mongoose.Schema;
 schema.plugin(require('node-mongoose-tags'));
 ```
-## Statics and Methods
+## Static Methods
 
 ### addTags(documentIds, tagIds, callback)
 
-This static method will add the `tagIds` to the `tags` field of all documents of `documentIds`.
+Adds the `tagIds` to the `tags` field of all documents of `documentIds`.
 
 ### removeTags(documentIds, tagIds, callback)
 
-This static method will remove the `tagIds` from the `tags` field of all documents with id's of `documentIds`.
+Removes the `tagIds` from the `tags` field of all documents with id's of `documentIds`.
+
+### getTags(documentId, callback)
+
+Gets all tags of `documentId`.
 
 ### Test
 
