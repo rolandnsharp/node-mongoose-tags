@@ -10,14 +10,23 @@ mongoose.connection.on('open', function() {
     console.log('database connection open...');
 });
 
-var schema = new Schema({
+var documentSchema = new Schema({
     name: String
 }, {
-    collection: 'testCollection'
+    collection: 'documentCollection'
+});
+
+var tagSchema = new Schema({
+    label: String
+}, {
+    collection: 'tagCollection'
 });
 
 var tags = require('../');
 
-schema.plugin(tags);
+documentSchema.plugin(tags);
 
-module.exports = mongoose.model('test', schema);
+module.exports = {
+  document: mongoose.model('document', documentSchema),
+  tag: mongoose.model('tag', tagSchema)
+};
