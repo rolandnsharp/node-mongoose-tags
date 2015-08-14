@@ -1,10 +1,16 @@
 var _ = require('lodash');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 
 module.exports = function(schema, options) {
 
-  // add fields to mongoose schema
+  // FIXME: perhaps we could set the ref from the options
   schema.add({
-    tags: [String]
+    tags: [{
+      type: ObjectId,
+      ref: 'tag'
+    }]
   });
 
   schema.statics.addTags = function(documents, tags, callback) {
@@ -25,7 +31,9 @@ module.exports = function(schema, options) {
 
     var update = {
       '$addToSet': {
-        tags: { "$each": tags }
+        tags: {
+          "$each": tags
+        }
       }
     };
 

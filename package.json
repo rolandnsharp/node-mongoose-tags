@@ -27,6 +27,7 @@
     "should": "^7.0.3"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "mongoose": "^4.1.2"
   }
 }
