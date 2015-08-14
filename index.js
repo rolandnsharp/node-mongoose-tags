@@ -84,11 +84,21 @@ module.exports = function(schema, options) {
   };
 
 
+  schema.statics.getTags = function(documentId, callback) {
+
+    this.findById(documentId)
+    .populate('tags')
+    .select('tags')
+    .exec(function(err, docs){
+
+      callback(err, docs.tags);
+
+    });
+  };
+
   schema.methods.addTags = function(tag, callback) {
 
-
-
-    this.tags
+    
   };
 
   schema.statics.removeTag = function(tag, callback) {
